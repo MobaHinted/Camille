@@ -7,12 +7,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using Camille.Core;
 using Camille.Enums;
 
@@ -178,7 +178,8 @@ namespace Camille.{{= it.namespace }}
         {
 {{? isAsync }}
 {{? queryParams.length }}
-            var queryParams = new NameValueCollection();
+            // Private `HttpQSCollection` override of `NameValueCollection`.
+            var queryParams = HttpUtility.ParseQueryString("");
 {{
                     for (const queryParam of queryParams)
                     {
