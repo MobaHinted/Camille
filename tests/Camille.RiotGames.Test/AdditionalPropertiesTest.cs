@@ -14,7 +14,6 @@ namespace Camille.RiotGames.Test
     'id': 'SBM8Ubipo4ge2yj7bhEzL7yvV0C9Oc1XA2l6v5okGMA_nCw',
     'accountId': 'iheZF2uJ50S84Hfq6Ob8GNlJAUmBmac-EsEEWBJjD01q1jQ',
     'puuid': 'bJ_-UdX8v1NqvsUemuklcmd70lNjgDY0UN81L75d84HneX8dHy8iteZC49qEkJVPvGzJZC4R-89dHA',
-    'name': 'LugnutsK',
     'oopsExtraField': 'spooky rito',
     'profileIconId': 4540,
     'revisionDate': 1589704662000,

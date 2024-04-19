@@ -24,7 +24,7 @@ namespace Camille.RiotGames.Test
                 var currentGame = Api.SpectatorV5().GetCurrentGameInfoByPuuid(REGION, participant.Puuid);
                 Assert.IsNotNull(currentGame);
                 Assert.AreEqual(gameInfo.GameId, currentGame.GameId);
-                Assert.IsTrue(currentGame.Participants.Any(cp => participant.SummonerName.Equals(cp.SummonerName)),
+                Assert.IsTrue(currentGame.Participants.Any(cp => participant.Puuid.Equals(cp.Puuid)),
                     "Failed to find matching summoner.");
             }
         }
@@ -40,7 +40,7 @@ namespace Camille.RiotGames.Test
                 var currentGame = await Api.SpectatorV5().GetCurrentGameInfoByPuuidAsync(REGION, participant.Puuid);
                 Assert.IsNotNull(currentGame);
                 Assert.AreEqual(gameInfo.GameId, currentGame.GameId);
-                Assert.IsTrue(currentGame.Participants.Any(cp => participant.SummonerName.Equals(cp.SummonerName)),
+                Assert.IsTrue(currentGame.Participants.Any(cp => participant.Puuid.Equals(cp.Puuid)),
                     "Failed to find matching summoner.");
             });
             await Task.WhenAll(tasks);
@@ -57,7 +57,7 @@ namespace Camille.RiotGames.Test
                 var currentGame = Api.SpectatorV5().GetCurrentGameInfoByPuuid(REGION, participant.Puuid);
                 Assert.IsNotNull(currentGame);
                 Assert.AreEqual(gameInfo.GameId, currentGame.GameId);
-                Assert.IsTrue(currentGame.Participants.Any(cp => participant.SummonerName.Equals(cp.SummonerName)),
+                Assert.IsTrue(currentGame.Participants.Any(cp => participant.Puuid.Equals(cp.Puuid)),
                     "Failed to find matching summoner.");
             });
             Assert.IsTrue(result.IsCompleted);

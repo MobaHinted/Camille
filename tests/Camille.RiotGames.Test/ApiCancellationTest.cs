@@ -17,7 +17,7 @@ namespace Camille.RiotGames.Test
         {
             var tokenSource = new CancellationTokenSource();
             var tasks = Enumerable.Range(0, 1000)
-                .Select(n => Api.SummonerV4().GetBySummonerNameAsync(PlatformRoute.NA1, n.ToString(), tokenSource.Token))
+                .Select(n => Api.AccountV1().GetByRiotIdAsync(PlatformRoute.NA1.ToRegional(), n.ToString(), "NA1", tokenSource.Token))
                 .ToList();
             tokenSource.CancelAfter(1000);
             for (var n = 0; n < tasks.Count; n++)
@@ -25,11 +25,11 @@ namespace Camille.RiotGames.Test
                 var task = tasks[n];
                 try
                 {
-                    var summoner = await task;
-                    if (summoner == null)
+                    var account = await task;
+                    if (account == null)
                         Console.WriteLine($"Summoner {n} is null.");
                     else
-                        Assert.AreEqual(n.ToString(), Regex.Replace(summoner.Name, @"\D", ""));
+                        Assert.AreEqual(n.ToString(), Regex.Replace(account.GameName, @"\D", ""));
                 }
                 catch (OperationCanceledException e) // And TaskCanceledException.
                 {

@@ -16,18 +16,18 @@ namespace Camille.RiotGames.Test
             var riotApi = Api;
 
             // Get summoners by name synchronously. (Note: async is faster as it allows simultaneous requests).
-            var summoners = new[]
+            var accounts = new[]
             {
-                riotApi.SummonerV4().GetBySummonerName(PlatformRoute.NA1, "jAnna kendrick"),
-                riotApi.SummonerV4().GetBySummonerName(PlatformRoute.NA1, "lug nuts k")
+                riotApi.AccountV1().GetByRiotId(PlatformRoute.NA1.ToRegional(), "jAnna kendrick", "CREAM"),
+                riotApi.AccountV1().GetByRiotId(PlatformRoute.NA1.ToRegional(), "lug nuts k", "000")
             };
 
-            foreach (var summoner in summoners)
+            foreach (var account in accounts)
             {
-                Console.WriteLine($"{summoner.Name}'s Top 10 Champs:");
+                Console.WriteLine($"{account.GameName}#{account.TagLine}'s Top 10 Champs:");
 
                 var masteries =
-                    riotApi.ChampionMasteryV4().GetAllChampionMasteriesByPUUID(PlatformRoute.NA1, summoner.Puuid);
+                    riotApi.ChampionMasteryV4().GetAllChampionMasteriesByPUUID(PlatformRoute.NA1, account.Puuid);
 
                 for (var i = 0; i < 10; i++)
                 {
