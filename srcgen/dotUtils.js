@@ -84,6 +84,9 @@ function stringifyType(prop, endpoint = null) {
     case 'number': return prop.format || 'double';
     case 'array': return stringifyType(prop.items, endpoint) + '[]';
     case 'object': {
+      if (1 === Object.keys(prop).length) { // Only `{ "type": "object" }`.
+        return 'System.Text.Json.Nodes.JsonObject';
+      }
       const keyType = prop['x-key'] ? stringifyType(prop['x-key'], endpoint) : 'string';
       return `IDictionary<${keyType}, ${stringifyType(prop.additionalProperties, endpoint)}>`;
     }
