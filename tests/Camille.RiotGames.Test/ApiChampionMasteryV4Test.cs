@@ -13,36 +13,36 @@ namespace Camille.RiotGames.Test
         [TestMethod]
         public void GetChampion()
         {
-            var summoner = Api.SummonerV4().GetBySummonerName(PlatformRoute.NA1, "LugnutsK");
-            CheckGetChampion(Api.ChampionMasteryV4().GetChampionMasteryByPUUID(PlatformRoute.NA1, encryptedPUUID: summoner.Puuid, championId: Champion.ZYRA));
+            var account = Api.AccountV1().GetByRiotId(RegionalRoute.AMERICAS, "LugnutsK", "000");
+            CheckGetChampion(Api.ChampionMasteryV4().GetChampionMasteryByPUUID(PlatformRoute.NA1, encryptedPUUID: account.Puuid, championId: Champion.ZYRA));
         }
 
         [TestMethod]
         public async Task GetChampionAsync()
         {
-            var summoner = await Api.SummonerV4().GetBySummonerNameAsync(PlatformRoute.NA1, "LugnutsK");
-            CheckGetChampion(await Api.ChampionMasteryV4().GetChampionMasteryByPUUIDAsync(PlatformRoute.NA1, encryptedPUUID: summoner.Puuid, championId: Champion.ZYRA));
+            var account = await Api.AccountV1().GetByRiotIdAsync(RegionalRoute.AMERICAS, "LugnutsK", "000");
+            CheckGetChampion(await Api.ChampionMasteryV4().GetChampionMasteryByPUUIDAsync(PlatformRoute.NA1, encryptedPUUID: account.Puuid, championId: Champion.ZYRA));
         }
 
         public static void CheckGetChampion(ChampionMastery result)
         {
             Assert.IsNotNull(result);
-            Assert.AreEqual(7, result.ChampionLevel, result.ChampionLevel.ToString());
-            Assert.IsTrue(result.ChampionPoints >= 389_578, result.ChampionPoints.ToString());
+            Assert.IsTrue(result.ChampionLevel >= 93, result.ChampionLevel.ToString());
+            Assert.IsTrue(result.ChampionPoints > 1_000_000, result.ChampionPoints.ToString());
         }
 
         [TestMethod]
         public void GetChampions()
         {
-            var summoner = Api.SummonerV4().GetBySummonerName(PlatformRoute.NA1, "LugnutsK");
-            CheckGetChampions(Api.ChampionMasteryV4().GetAllChampionMasteriesByPUUID(PlatformRoute.NA1, summoner.Puuid));
+            var account = Api.AccountV1().GetByRiotId(RegionalRoute.AMERICAS, "LugnutsK", "000");
+            CheckGetChampions(Api.ChampionMasteryV4().GetAllChampionMasteriesByPUUID(PlatformRoute.NA1, account.Puuid));
         }
 
         [TestMethod]
         public async Task GetChampionsAsync()
         {
-            var summoner = await Api.SummonerV4().GetBySummonerNameAsync(PlatformRoute.NA1, "LugnutsK");
-            CheckGetChampions(await Api.ChampionMasteryV4().GetAllChampionMasteriesByPUUIDAsync(PlatformRoute.NA1, summoner.Puuid));
+            var account = await Api.AccountV1().GetByRiotIdAsync(RegionalRoute.AMERICAS, "LugnutsK", "000");
+            CheckGetChampions(await Api.ChampionMasteryV4().GetAllChampionMasteriesByPUUIDAsync(PlatformRoute.NA1, account.Puuid));
         }
 
         public static void CheckGetChampions(ChampionMastery[] champData)
@@ -61,20 +61,20 @@ namespace Camille.RiotGames.Test
         [TestMethod]
         public void GetScoreByPUUID()
         {
-            var summoner = Api.SummonerV4().GetBySummonerName(PlatformRoute.EUW1, "Ma5tery");
-            CheckGetScore(Api.ChampionMasteryV4().GetChampionMasteryScoreByPUUID(PlatformRoute.EUW1, summoner.Puuid));
+            var account = Api.AccountV1().GetByRiotId(RegionalRoute.AMERICAS, "Ma5tery", "EUW");
+            CheckGetScore(Api.ChampionMasteryV4().GetChampionMasteryScoreByPUUID(PlatformRoute.EUW1, account.Puuid));
         }
 
         [TestMethod]
         public async Task GetScoreByPUUIDAsync()
         {
-            var summoner = await Api.SummonerV4().GetBySummonerNameAsync(PlatformRoute.EUW1, "Ma5tery");
-            CheckGetScore(await Api.ChampionMasteryV4().GetChampionMasteryScoreByPUUIDAsync(PlatformRoute.EUW1, summoner.Puuid));
+            var account = await Api.AccountV1().GetByRiotIdAsync(RegionalRoute.AMERICAS, "Ma5tery", "EUW");
+            CheckGetScore(await Api.ChampionMasteryV4().GetChampionMasteryScoreByPUUIDAsync(PlatformRoute.EUW1, account.Puuid));
         }
 
         public static void CheckGetScore(int score)
         {
-            Assert.IsTrue(952 <= score && score < 1000, score.ToString());
+            Assert.IsTrue(1000 <= score && score < 1100, score.ToString());
         }
     }
 }
