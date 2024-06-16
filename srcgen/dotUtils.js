@@ -55,7 +55,7 @@ function normalizePropName(propName, schemaName, value) {
   const tokens = propName.split(/[_-]/g);
   let name = tokens.map(capitalize).join('');
   if (name === schemaName)
-    name += stringifyType(value);
+    name += '_';
   return name;
 }
 
