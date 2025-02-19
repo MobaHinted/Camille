@@ -50,13 +50,18 @@
   <!-- Include project information files for packaging. -->
   <ItemGroup>
     <!-- Icon png for PackageIcon. -->
-    <None Include="$(SolutionDir)\$(PackageIcon)" Pack="true" PackagePath="\" />
+      <None Include="$(SolutionDir)..\Camille\$(PackageIcon)" Pack="true"
+            PackagePath="\"/>
     <!-- Readme for PackageReadmeFile. -->
-    <None Include="$(SolutionDir)\$(PackageReadmeFile)" Pack="true" PackagePath="\" />
+      <None Include="$(SolutionDir)..\Camille\$(PackageReadmeFile)" Pack="true"
+            PackagePath="\"/>
     <!-- License files. -->
-    <None Include="$(SolutionDir)\LICENSE.txt" Pack="true" PackagePath="\" />
-    <None Include="$(SolutionDir)\LICENSE-MIT.txt" Pack="true" PackagePath="\" />
-    <None Include="$(SolutionDir)\LICENSE-APACHE.txt" Pack="true" PackagePath="\" />
+      <None Include="$(SolutionDir)..\Camille\LICENSE.txt" Pack="true"
+            PackagePath="\"/>
+      <None Include="$(SolutionDir)..\Camille\LICENSE-MIT.txt" Pack="true"
+            PackagePath="\"/>
+      <None Include="$(SolutionDir)..\Camille\LICENSE-APACHE.txt" Pack="true"
+            PackagePath="\"/>
   </ItemGroup>
 
   <!-- Include RiotCertificateUtils for LolGame (In-Game) API. (Also used by LCU, but LCU support was removed. -->
@@ -89,7 +94,9 @@
 
   <!-- On Windows DispatchToInnerBuilds is run due to multiple TargetFrameworks. -->
   <Target Name="BuildTemplates" BeforeTargets="DispatchToInnerBuilds" DependsOnTargets="DownloadTemplateDataTrigger">
-    <Exec WorkingDirectory="$(SolutionDir)/srcgen" Command="pwsh -ExecutionPolicy Bypass -File install.ps1" />
-    <Exec WorkingDirectory="$(SolutionDir)" Command="node srcgen/index.js &quot;$(MSBuildProjectDirectory)&quot;" />
+      <Exec WorkingDirectory="$(SolutionDir)..\Camille\srcgen"
+            Command="pwsh -ExecutionPolicy Bypass -File install.ps1"/>
+      <Exec WorkingDirectory="$(SolutionDir)..\Camille\"
+            Command="node srcgen/index.js &quot;$(MSBuildProjectDirectory)&quot;"/>
   </Target>
 </Project>
