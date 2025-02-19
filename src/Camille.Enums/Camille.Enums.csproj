@@ -5,6 +5,7 @@
     <PackageId>Camille.Enums</PackageId>
     <RootNamespace>Camille.Enums</RootNamespace>
     <Description>Enums for League of Legends and other Riot Games games.</Description>
+      <NoWarn>1701;1702;NU1903;CS0612</NoWarn>
   </PropertyGroup>
 
   <Target Name="DownloadTemplateData" BeforeTargets="DownloadTemplateDataTrigger">

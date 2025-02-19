@@ -6,6 +6,7 @@
     <PackageId>Camille.RiotGames</PackageId>
     <RootNamespace>Camille.RiotGames</RootNamespace>
     <Description>Riot Games API library. Fully rate limited, automatic retrying, thread-safe. Up-to-date nightlies.</Description>
+      <NoWarn>1701;1702;NU1903;CS0612</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MingweiSamuel.TokenBucket" Version="1.0.2" />

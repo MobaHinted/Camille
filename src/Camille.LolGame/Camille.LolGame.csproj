@@ -5,6 +5,7 @@
     <PackageId>Camille.LolGame</PackageId>
     <RootNamespace>Camille.LolGame</RootNamespace>
     <Description>League of Legends Live (In-Game) Client Data API library</Description>
+      <NoWarn>1701;1702;NU1903;CS0612</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="MingweiSamuel.TokenBucket" Version="1.0.2" />
